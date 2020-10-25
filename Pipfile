@@ -11,6 +11,12 @@ scikit-learn = "*"
 opencv-python = "*"
 pandas = "*"
 matplotlib = "*"
+scipy = "*"
+npm = "*"
+ipympl = "*"
+pyqt5 = "*"
+sip = "*"
+pynvim = "*"
 
 [requires]
 python_version = "3.8"
