@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1d7ce92959aad56353e25db3653aa08100525ad499864d64ff55309f15797543"
+            "sha256": "019d7e1cca371cabcb83f2f31dd00b63471a2464315b5597e587b3f7b286c27b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -443,11 +443,11 @@
         },
         "nest-asyncio": {
             "hashes": [
-                "sha256:a4487c4f49f2d11a7bb89a512a6886b6a5045f47097f49815b2851aaa8599cf0",
-                "sha256:b86c3193abda5b2eeccf8c79894bc71c680369a178f4b068514ac00720b14e01"
+                "sha256:c2d3bdc76ba235a7ad215128afe31d74a320d25790c50cd94685ec5ea221b94d",
+                "sha256:c614fcfaca72b1f04778bc0e73f49c84500b3d045c49d149fc46f1566643c175"
             ],
             "markers": "python_version >= '3.5'",
-            "version": "==1.4.1"
+            "version": "==1.4.2"
         },
         "notebook": {
             "hashes": [
@@ -658,6 +658,13 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==2.7.2"
+        },
+        "pykalman": {
+            "hashes": [
+                "sha256:816af47720d924a4c6016fa74b9e2c8c21165a08d91693c322a1741e8e07fb38"
+            ],
+            "index": "pypi",
+            "version": "==0.9.5"
         },
         "pynvim": {
             "hashes": [

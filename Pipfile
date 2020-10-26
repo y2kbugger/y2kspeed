@@ -17,6 +17,7 @@ ipympl = "*"
 pyqt5 = "*"
 sip = "*"
 pynvim = "*"
+pykalman = "*"
 
 [requires]
 python_version = "3.8"
