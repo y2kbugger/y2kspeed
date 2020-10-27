@@ -67,6 +67,8 @@ testing error, training error
 - tune optical flow preprocessing
 - kalman on Vf before training 
 - feature extractor
-    - dict of frames model
+    - X dict of frames model
         - view named by key
-    - can also write final "extract function" against key
+    - X can also write final "extract function" against key
+- optical flow between more 1 frame delta
+    - X need to add "memory" to frame
