@@ -41,6 +41,18 @@ testing error, training error
 - nchunks=50 focus(8x20) BaysianRidge() 78.7 40.1 20.0 29.1
 - nchunks=50 focus(8x20) EnsembleStack() 78.7 15.6 0.9 11.1
 
+
+# lk_flow all BW, All perspective corrected scaled lk_kf can predict 10.3
+- dummy test train test_kf
+- 62.7 18.8 20.8 8.0 - nchunks=50 test_pct=.43 focus(1x3) lk(?) SVR(?)                  
+- 62.7 15.4 9.8 5.2 - EmsembleStack(svr(c=20), rf, mlp)                                       
+- 66.3 20.9 9.1 9.0 - test_pct=.70                                           
+- 66.3 20.9 10.8 9.3 - EmsembleStack(svr(c=.3), rf, mlp)                                                    
+- 62.7 15.8 10.4 5.5 - test_pct=.43                                                
+- 62.7 16.0 8.7 5.3 - EmsembleStack(svr(c=.3), rf)
+- 62.7 16.0 8.7 5.3 - move zero clamp to after kalman
+- 62.7 16.0 8.0 5.0 - use Pipe(StdScale,Ensemble(svr(c=.3), rf))
+
 ## ideas
 - X start chunking
 - X increase test_size to at least .25
@@ -56,20 +68,29 @@ testing error, training error
           - The reference angle is in the denominator and therefore normalizes the optical flow vector. - Wrong, it eliminates panning but doesn't correct for perspective project. Duh
 - X perspective shifting
 - X apply perspective shifting/b&w to blur method also
-    - speed enhancement for overall extracting
-- add debug for tiling (matplotlib subplots imshow)
+    X- speed enhancement for overall extracting
+- Xadd debug for tiling (matplotlib subplots imshow)
 
 - stop detection
-    - enhance "noise" filter in optical flow by incorporating stdev (problem = slow speeds)
+    - X enhance "noise" filter in optical flow by incorporating stdev (problem = slow speeds)
     - structural differenct preprocessor
-    - can blur method halp determine "stopped"
+    - X can blur method halp determine "stopped"
     - ratio of good to bad vectors
-- tune optical flow parameters
-- tune optical flow preprocessing
-- kalman on Vf before training 
+
+
 - feature extractor
     - X dict of frames model
-        - view named by key
+        - Xview named by key
     - X can also write final "extract function" against key
-- optical flow between more 1 frame delta
+
+- Preprocessing
+    - kalman on Vf before training 
+    - sharpen, etc before lk optical flow
+- Feature Extraction
+    - Optical flow between more 1 frame delta
     - X need to add "memory" to frame
+- Tuning
+    - tune optical flow parameters
+    - tune optical flow preprocessing
+        -sharpen etc? 
+    - tune ML model
