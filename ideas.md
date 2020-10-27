@@ -63,6 +63,7 @@ testing error, training error
     - enhance "noise" filter in optical flow by incorporating stdev (problem = slow speeds)
     - structural differenct preprocessor
     - can blur method halp determine "stopped"
+    - ratio of good to bad vectors
 - tune optical flow parameters
 - tune optical flow preprocessing
 - kalman on Vf before training 
