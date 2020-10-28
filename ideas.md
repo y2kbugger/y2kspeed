@@ -52,6 +52,19 @@ testing error, training error
 - 62.7 16.0 8.7 5.3 - EmsembleStack(svr(c=.3), rf)
 - 62.7 16.0 8.7 5.3 - move zero clamp to after kalman
 - 62.7 16.0 8.0 5.0 - use Pipe(StdScale,Ensemble(svr(c=.3), rf))
+soley based on direct linear optical flow we can estimate 10.3, with 3 frame multi-flow 10.2 (scaled on all data, cheating..)
+dummy	test	train	test_kf	NoML     NoML is best we can get without any fitting e.g. the final 0_kf or 024_kf scaled
+XXXXX	16.0	8.00	5.00	10.3	single frame optical no focusbase (include stdev?)
+XXXXX	10.3	10.8	4.70	10.2	3 frame optical, 024_kf added to others
+XXXXX	15.9	4.60	9.10	10.2	last + 3 focus features, ...hmmm maby need more model complexity
+79.1	15.6	4.20	9.00	10.2	pretty dissapppoint gridsearch..C=20, n_estimators=150, looking back last round was already overfit..
+62.6	11.2	11.4	4.40	10.2	ensemble(svr(c=.3,), rf(n_estimators=60)) Index([0, 2, 3, 4, '024'], dtype='object')
+78.2	13.1	10.9	6.30	10.2	above with removed std(X3), guess it's needed
+ok gaussian is really good
+78.8	22.7	19.7	13.5	7.2		7x7 Gauss made 1-frame optical fundamentally better
+***added gaussian7x7 to main notebook
+***Found "absurd" cap likely being hit on high side (140) when using 3 frame diff
+***incorporated extractor enhancements
 
 ## ideas
 - X start chunking
@@ -68,29 +81,47 @@ testing error, training error
           - The reference angle is in the denominator and therefore normalizes the optical flow vector. - Wrong, it eliminates panning but doesn't correct for perspective project. Duh
 - X perspective shifting
 - X apply perspective shifting/b&w to blur method also
-    X- speed enhancement for overall extracting
-- Xadd debug for tiling (matplotlib subplots imshow)
+    - X speed enhancement for overall extracting
+- X add debug for tiling (matplotlib subplots imshow)
 
 - stop detection
     - X enhance "noise" filter in optical flow by incorporating stdev (problem = slow speeds)
-    - structural differenct preprocessor
     - X can blur method halp determine "stopped"
-    - ratio of good to bad vectors
-
-
-- feature extractor
+   
+- Feature Extractor
     - X dict of frames model
-        - Xview named by key
+        - X view named by key
     - X can also write final "extract function" against key
+    - names for headers on X df (from via_xxxxx)
+    - Xprocess via (done in gauss_sobel)
+    - Xfe.add_step(analyze_frames(...)) --> fe.add_analyzer(...)
+    - Xfe.add_step(process_frames(via=lambda img: cv2.GaussianBlur(img,(7,7),0))) --> fe.add_processcor(lambda img: cv2.GaussianBlur(img,(7,7),0)))
+    - Xfe.add_step --> fe.add_filteragg
 
-- Preprocessing
-    - kalman on Vf before training 
-    - sharpen, etc before lk optical flow
+- Processing
+    - Pre-extract
+        - Xsharpen,blur, etc before lk optical flow
+            - X sobel filter?...NO
+            - XGaussian....yeessir!!
+    - Post-extract
+        - <>kalman on Vf before training...too risky, how would that affect training
+        - <>0MPH clamp before training ...on what? raw Vf?
 - Feature Extraction
     - Optical flow between more 1 frame delta
-    - X need to add "memory" to frame
+        - X need to add "memory" to frame ...done, now have framework for extraction pipeline also
+        - X how to combine (ml or within single feature?)...as outgoing feature, math to combine into 023kf
+        - X maybe use same corners for both and see which are correlated....too much work
+    
+    - X ratio of good to bad vectors for lk (STOP DETECT) ....didn't really work
+    - difference between frame (STOP DETECT)....not tried yet
 - Tuning
     - tune optical flow parameters
-    - tune optical flow preprocessing
-        -sharpen etc? 
+        - corner quality
     - tune ML model
+        - really want to prevent overfitting
+    - kf tuning
+    - Tweak projection transform matrix
+- todo
+    - Xincorp process via into speed from gauss_sobel
+    - build actual system to read in test video and do inference
+    - Xtest gauss using regression (using gaussian go)
