@@ -62,9 +62,13 @@ XXXXX	15.9	4.60	9.10	10.2	last + 3 focus features, ...hmmm maby need more model 
 78.2	13.1	10.9	6.30	10.2	above with removed std(X3), guess it's needed
 ok gaussian is really good
 78.8	22.7	19.7	13.5	7.2		7x7 Gauss made 1-frame optical fundamentally better
-***added gaussian7x7 to main notebook
-***Found "absurd" cap likely being hit on high side (140) when using 3 frame diff
-***incorporated extractor enhancements
+added gaussian7x7 to main notebook
+Found "absurd" cap likely being hit on high side (140) when using 3 frame diff
+incorporated extractor enhancements
+ok looked worse when combining and removing absurd cap, this means we are having issue clusting valid points still.....
+going to view specific sequences***
+
+68.8	14.4	6.30	6.80	7.40	ensemble(svr(c=.3,), rf(n_estimators=60)) [0,2,4,3,'024'] with gaussian, 3frame, and zero-filled N/A
 
 ## ideas
 - X start chunking
@@ -107,7 +111,7 @@ ok gaussian is really good
         - <>kalman on Vf before training...too risky, how would that affect training
         - <>0MPH clamp before training ...on what? raw Vf?
 - Feature Extraction
-    - Optical flow between more 1 frame delta
+    - X Optical flow between more 1 frame delta
         - X need to add "memory" to frame ...done, now have framework for extraction pipeline also
         - X how to combine (ml or within single feature?)...as outgoing feature, math to combine into 023kf
         - X maybe use same corners for both and see which are correlated....too much work
@@ -125,3 +129,4 @@ ok gaussian is really good
     - Xincorp process via into speed from gauss_sobel
     - build actual system to read in test video and do inference
     - Xtest gauss using regression (using gaussian go)
+    - Explore usefulness of diff
