@@ -106,7 +106,7 @@ going to view specific sequences***
     - Pre-extract
         - Xsharpen,blur, etc before lk optical flow
             - X sobel filter?...NO
-            - XGaussian....yeessir!!
+            - X Gaussian....yeessir!!
     - Post-extract
         - <>kalman on Vf before training...too risky, how would that affect training
         - <>0MPH clamp before training ...on what? raw Vf?
@@ -117,16 +117,18 @@ going to view specific sequences***
         - X maybe use same corners for both and see which are correlated....too much work
     
     - X ratio of good to bad vectors for lk (STOP DETECT) ....didn't really work
-    - difference between frame (STOP DETECT)....not tried yet
+    - X difference between frame (STOP DETECT)....no benefit
 - Tuning
+    - <>tune ML model - no longer needed, perfect way to prevent overfitting
+        - <>really want to prevent overfitting
+    - X kf tuning
+    - Tweak projection transform matrix
+        - especially for second video
     - tune optical flow parameters
         - corner quality
-    - tune ML model
-        - really want to prevent overfitting
-    - kf tuning
-    - Tweak projection transform matrix
-- todo
-    - Xincorp process via into speed from gauss_sobel
+    - Final tuning of gaussian
+- Todo
+    - X incorp process via into speed from gauss_sobel
     - build actual system to read in test video and do inference
-    - Xtest gauss using regression (using gaussian go)
-    - Explore usefulness of diff
+    - X test gauss using regression (using gaussian go)
+    - X Explore usefulness of diff -- no benefit
