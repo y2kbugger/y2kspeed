@@ -91,6 +91,7 @@ going to view specific sequences***
 - stop detection
     - X enhance "noise" filter in optical flow by incorporating stdev (problem = slow speeds)
     - X can blur method halp determine "stopped"
+    - ...optical flow got so good we could do it in post
    
 - Feature Extractor
     - X dict of frames model
