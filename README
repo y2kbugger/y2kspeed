@@ -1,0 +1,30 @@
+speed.ipynb - Pipeline comparing non optical flow method, also includes ML tuning
+speed-direct-optical-flow.ipynb - Calculate directly, without ML, and using only optical flow
+examine-stored-optical-flow.ipynb - Out of pipeline tool for quickly reanalyzing distributions of optical flow vectors
+
+There are other tools saved in history used for exploring options.
+
+pipenv is used for python requirements
+
+To run, this repo should be nested in next to the data dir from the original tar file:
+.
+├── data
+│   ├── test.mp4
+│   ├── train.mp4
+│   └── train.txt
+├── Pipfile
+├── Pipfile.lock
+├── README
+└── y2kspeed
+    ├── data # persisted flow vectors
+    │   ├── 1603921019
+    │   ├── ......
+    │   ├── 1604031609
+    ├── examine loss.ipynb
+    ├── examine-stored-optical-flow.ipynb
+    ├── ideas.md
+    ├── Pipfile
+    ├── Pipfile.lock
+    ├── README
+    ├── speed-direct-optical-flow.ipynb
+    └── speed.ipynb
